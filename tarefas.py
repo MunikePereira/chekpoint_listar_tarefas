@@ -2,6 +2,7 @@ import json
 lista_tarefas = []
 
 def adicionar_tarefa(descricao):
+    print("========= ADICIONAR TAREFA ========")
     tarefa = {
         "descricao" :descricao,
         "concluida" : False
@@ -9,10 +10,9 @@ def adicionar_tarefa(descricao):
 
     lista_tarefas.append(tarefa)
 
-    salvar_dados()
+    
     print("Tarefa adicionada com sucesso!")
-     
-
+    salvar_dados()
 
 
 def listar_tarefas():
@@ -24,17 +24,29 @@ def listar_tarefas():
         else:
             print(f"{indice}. {tarefa['descricao']} ❌")
 
+
 def concluir_tarefa(indice):
-   
+    print("========= CONCLUIR TAREFA ========")
     try: 
         tarefa = lista_tarefas[indice] 
         if not tarefa['concluida']:
             tarefa['concluida'] = True
             print(f"{indice}. {tarefa['descricao']} ✅ ")
         else: 
-            print("Está tarefa ja esta concluida")
-    except TypeError:
-        print("ERRO: Digite o número inteiro")
+            print("Esta tarefa já esta concluida!")
+              
+    except IndexError:
+        print("ERRO: digite um número que esta na lista")
+
+
+def excluir_tarefa(indice):
+   
+    print("========= EXCLUIR TAREFA ========")
+    try: 
+        lista_tarefas[indice] 
+        lista_tarefas.pop(indice)
+        print("Tarefa excluida")
+        salvar_dados()  
     except IndexError:
         print("ERRO: digite um número que esta na lista")
 
